@@ -10,7 +10,6 @@
     <ItemGroup>
       <ProjectReference Include="..\MegaMaki.Core\MegaMaki.Core.csproj" />
       <ProjectReference Include="..\MegaMaki.Data\MegaMaki.Data.csproj" />
-      <ProjectReference Include="..\MegaMaki.Test\MegaMaki.Test.csproj" />
     </ItemGroup>
 
 </Project>
