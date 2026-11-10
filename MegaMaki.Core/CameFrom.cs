@@ -2,8 +2,8 @@ namespace MegaMaki.Core;
 
 public enum CameFrom
 {
-    W, //web
-    K, //customer f2f order
-    T, //tablet order
+    Web, 
+    onCasa, //customer f2f order
+    Salon, //tablet order
 
 }

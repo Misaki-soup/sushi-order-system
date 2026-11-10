@@ -13,8 +13,8 @@ public class OrderLine
         
     }
 
-    public decimal GetTotalPrice()
+    public decimal GetTotalPrice(MenuItem prod)
     {
-        return Product.Price * Count;
+        return prod.Price * Count;
     }
 }
