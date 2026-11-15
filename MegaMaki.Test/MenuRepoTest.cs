@@ -81,5 +81,40 @@ public class MenuRepositoryTest
         Assert.That(items, Has.Count.EqualTo(1));
         Assert.That(items[0].Name, Is.EqualTo("Miso soup"));
     }
-    
+    [Test]
+    public void Add_DuplicateName_Throws()
+    {
+        _repo.Add(new MenuItem("Maki", 100m, Station.Sushi));
+
+        Assert.Throws<ArgumentException>(() =>
+            _repo.Add(new MenuItem("Maki", 120m, Station.Sushi)));
+    }
+    [Test]
+    public void Add_DuplicateNameDifferentCase_Throws()
+    {
+        _repo.Add(new MenuItem("Maki", 100m, Station.Sushi));
+
+        Assert.Throws<ArgumentException>(() =>
+            _repo.Add(new MenuItem("maki", 120m, Station.Sushi)));
+    }
+
+    [Test]
+    public void Delete_IgnoresCase()
+    {
+        _repo.Add(new MenuItem("Maki", 100m, Station.Sushi));
+
+        _repo.Delete("MAKI");
+
+        Assert.That(_repo.GetAll(), Is.Empty);
+    }
+
+    [Test]
+    public void Update_IgnoresCase()
+    {
+        _repo.Add(new MenuItem("Maki", 100m, Station.Sushi));
+
+        _repo.Update(new MenuItem("maki", 150m, Station.Sushi));
+
+        Assert.That(_repo.GetAll()[0].Price, Is.EqualTo(150m));
+    }
 }
