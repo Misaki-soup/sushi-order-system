@@ -9,29 +9,15 @@ public class Order
     public string phNum {   get;  private set; }= "";
     public decimal totalPrice { get; private set; } = 0m;
     public CameFrom channel {  get;  private set; }= CameFrom.onCasa;
-    public DiscountType Discount { get; private set; } = DiscountType.None;
+    public IDiscountStrategy Discount { get; private set; } = new NoDiscount(); 
     public Order(CameFrom ch) => channel = ch; //constr
     
-    public void SetDiscount(DiscountType type)
+    public void SetDiscount(IDiscountStrategy type)
     {
         Discount = type;
     }
     
-    public decimal GetTotalAfterDiscount()
-    {
-        if (Discount == DiscountType.Club)
-        {
-            return totalPrice * 0.90m;
-        }
-        else if (Discount == DiscountType.Employee)
-        {
-            return totalPrice * 0.80m;
-        }
-        else
-        {
-            return totalPrice;
-        }
-    }
+    public decimal GetTotalAfterDiscount() => Discount.Apply(totalPrice); 
 
     public void addToList(OrderLine line)
     {
@@ -63,6 +49,4 @@ public class Order
     }
 
     //CameFrom later add orders ids 
-
-
 }

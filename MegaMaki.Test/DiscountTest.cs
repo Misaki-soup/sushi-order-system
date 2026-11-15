@@ -4,7 +4,6 @@ namespace MegaMaki.Test;
 
 public class DiscountTest
 {
-    // 2 x 100 = 200 total
     private static Order MakeOrder()
     {
         var order = new Order(CameFrom.Web);
@@ -24,7 +23,7 @@ public class DiscountTest
     public void ClubDiscount_Gives10PercentOff()
     {
         var order = MakeOrder();
-        order.SetDiscount(DiscountType.Club);
+        order.SetDiscount(new ClubDiscount());
 
         Assert.That(order.GetTotalAfterDiscount(), Is.EqualTo(180m));
     }
@@ -33,7 +32,7 @@ public class DiscountTest
     public void EmployeeDiscount_Gives20PercentOff()
     {
         var order = MakeOrder();
-        order.SetDiscount(DiscountType.Employee);
+        order.SetDiscount(new EmployeeDiscount());
 
         Assert.That(order.GetTotalAfterDiscount(), Is.EqualTo(160m));
     }

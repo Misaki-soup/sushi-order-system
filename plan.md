@@ -29,9 +29,9 @@ not changing.
 - ansatt rabatt etc.
 
 ### orders channeling 
-- `k` for kunde (customer who ordered in f2f)
+- `k` for kunde (customer who ordered in f2f)/phone preorders
 - `w` web-order
-- `c` casa orders / phone preorders
+- `t` Tablet orders in the salon area
 
 ### time managment
 
