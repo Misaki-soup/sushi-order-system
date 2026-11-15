@@ -2,8 +2,11 @@
 using MegaMaki.Core;
 using MegaMaki.Data;
 
-var path = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "../../../../MegaMaki.Data/menu.json"));
-IMenuRepo repo = new JsonMenuRepo(path);
+var dataFolder = Path.GetFullPath(
+    Path.Combine(AppContext.BaseDirectory, "../../../../MegaMaki.Data"));
 
-var ui = new ConsoleUi(repo);
+IMenuRepo menuRepo = new JsonMenuRepo(Path.Combine(dataFolder, "menu.json"));
+IOrderRepo orderRepo = new JsonOrderRepo(Path.Combine(dataFolder, "orders.json"));
+
+var ui = new ConsoleUi(menuRepo, orderRepo);
 ui.Run();

@@ -6,10 +6,12 @@ namespace MegaMaki;
 public class ConsoleUi
 {
     private readonly IMenuRepo _repo;
+    private readonly IOrderRepo _orderRepo;
 
-    public ConsoleUi(IMenuRepo repo)
+    public ConsoleUi(IMenuRepo repo, IOrderRepo orderRepo)
     {
         _repo = repo;
+        _orderRepo = orderRepo;
     }
 
     //Main loop
@@ -22,6 +24,7 @@ public class ConsoleUi
             Console.WriteLine("=== MegaMaki ===");
             Console.WriteLine("1 Manage menu");
             Console.WriteLine("2 New order");
+            Console.WriteLine("3 Order history");
             Console.WriteLine("0 Exit");
 
             int choice = ReadInt("Choice: ");
@@ -33,6 +36,9 @@ public class ConsoleUi
                     break;
                 case 2:
                     NewOrder();
+                    break;
+                case 3:
+                    ShowOrders();
                     break;
                 case 0:
                     return;
@@ -286,8 +292,9 @@ public class ConsoleUi
             catch (ArgumentException ex)
             {
                 Console.WriteLine(ex.Message);
-            }
+            } 
         }
+        int orderId = _orderRepo.Add(order);
 
         //Receipt
         Console.WriteLine();
@@ -306,6 +313,29 @@ public class ConsoleUi
         Console.WriteLine();
         Console.WriteLine("Press Enter to continue");
         Console.ReadLine();
+        Console.WriteLine($"Order #{orderId}  {DateTime.Now:dd.MM.yyyy HH:mm}");
+    }
+    //History
+    private void ShowOrders()
+    {
+        var orders = _orderRepo.GetAll();
+
+        if (orders.Count == 0)
+        {
+            Console.WriteLine("No orders yet.");
+            return;
+        }
+
+        foreach (var o in orders)
+        {
+            Console.WriteLine();
+            Console.WriteLine($"#{o.Id}  {o.Date:dd.MM.yyyy HH:mm}  {o.CustomerName} ({o.Phone})  {o.Channel}");
+            foreach (var line in o.Lines)
+            {
+                Console.WriteLine($"    {line.Count} x {line.Name,-20} {line.UnitPrice,7:0.00} kr");
+            }
+            Console.WriteLine($"    {o.Discount}, total {o.Total:0.00} kr");
+        }
     }
 
     //Input helpers

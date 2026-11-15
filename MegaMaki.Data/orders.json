@@ -1,0 +1,56 @@
+[
+  {
+    "Id": 1,
+    "Date": "2026-11-15T23:29:23.1363917+01:00",
+    "CustomerName": "Pavlo",
+    "Phone": "85943420",
+    "Channel": "Web",
+    "Lines": [
+      {
+        "Name": "Hoisinsaus",
+        "Count": 1,
+        "UnitPrice": 22,
+        "Station": "Casa"
+      },
+      {
+        "Name": "1. Miso suppe",
+        "Count": 2,
+        "UnitPrice": 75,
+        "Station": "Kitchen"
+      },
+      {
+        "Name": "Combo 3 - Vegetar (16 biter)",
+        "Count": 3,
+        "UnitPrice": 225,
+        "Station": "Sushi"
+      }
+    ],
+    "Discount": "NoDiscount",
+    "Subtotal": 847,
+    "Total": 847
+  },
+  {
+    "Id": 2,
+    "Date": "2026-11-15T23:30:27.7507453+01:00",
+    "CustomerName": "O",
+    "Phone": "55555555",
+    "Channel": "onCasa",
+    "Lines": [
+      {
+        "Name": "2b. Kylling v\u00E5rruller (2stk)",
+        "Count": 6,
+        "UnitPrice": 85,
+        "Station": "Kitchen"
+      },
+      {
+        "Name": "2c. Seafood v\u00E5rruller (2stk)",
+        "Count": 2,
+        "UnitPrice": 85,
+        "Station": "Kitchen"
+      }
+    ],
+    "Discount": "ClubDiscount",
+    "Subtotal": 680,
+    "Total": 612.00
+  }
+]
